@@ -3,7 +3,7 @@
 #define first_count  10
 #define set_buf_size(v) (v->buf_size = v->_item_size * v->actual_count)
 
-#define get_itemptr(v, i) ((char*)v->buf + i * v->_item_size)
+#define get_itemptr(v, i) ((char*)v->buf + (i) * v->_item_size)
 
 Vector* vec_new(size_t item_size) {
   Vector* vec = calloc(1, sizeof(Vector));
