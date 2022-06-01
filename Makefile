@@ -1,4 +1,24 @@
-all:
-	@[ -d lib ] || mkdir -p lib
-	clang -std=c17 -O2 -c -o vector.o vector.c
-	ar rcs lib/libcvector.a vector.o
+TARGET	= libcvector.a
+
+BUILD		= lib
+OUTPUT	= $(BUILD)/$(TARGET)
+
+INCLUDE	= include
+SOURCE	= src
+
+CFILES	= $(wildcard $(SOURCE)/*.c)
+OFILES	= $(patsubst %.c, $(BUILD)/%.o, $(notdir $(CFILES)))
+
+CFLAGS	= -O2 -std=c17 $(foreach dir,$(INCLUDE),-I$(CURDIR)/$(dir))
+
+all: $(OUTPUT)
+
+$(BUILD)/%.o: $(SOURCE)/%.c
+	@[ -d $(BUILD) ] || mkdir -p $(BUILD)
+	@echo $(notdir $<)
+	@clang $(CFLAGS) -c -o $@ $<
+
+$(OUTPUT): $(OFILES)
+	@[ -d $(BUILD) ] || mkdir -p $(BUILD)
+	@echo linking...
+	@ar rsc $@ $^
