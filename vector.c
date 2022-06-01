@@ -1,4 +1,7 @@
-#include "metro.h"
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include "vector.h"
 
 #define first_count  10
 #define set_buf_size(v) (v->buf_size = v->_item_size * v->actual_count)
