@@ -38,8 +38,8 @@ void vec_push(Vector* vec, void* item) {
   // realloc to double size if overed half
   if( vec->count >= vec->actual_count >> 1 ) {
     vec->actual_count <<= 1;
-    vec->buf = realloc(vec->buf, vec->actual_count);
     set_buf_size(vec);
+    vec->buf = realloc(vec->buf, vec->buf_size);
   }
 }
 
