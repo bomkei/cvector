@@ -17,6 +17,10 @@ int main() {
     vec_push(vec, &i);
   }
   
+  // remove 1 and 3
+  vec_erase(vec, 3);
+  vec_erase(vec, 1);
+  
   // print all
   for( size_t i = 0; i < vec->count; i++ ) {
     printf("%s\n", vecget(int, vec, i));
