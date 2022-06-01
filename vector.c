@@ -14,8 +14,8 @@ Vector* vec_new(size_t item_size) {
   vec->actual_count = 10;
   vec->_item_size = item_size;
 
-  vec->buf = calloc(vec->actual_count, item_size);
   vec->buf_size = vec->actual_count * item_size;
+  vec->buf = malloc(vec->buf_size);
 
   vec->count = 0;
 
@@ -59,6 +59,7 @@ void vec_pop(Vector* vec) {
 
 void vec_pop_front(Vector* vec) {
   memcpy((char*)vec->buf + vec->_item_size, vec->buf, (vec->count - 1) * vec->_item_size);
+  vec->count--;
 }
 
 void vec_erase(Vector* vec, size_t index) {
