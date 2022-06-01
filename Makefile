@@ -40,7 +40,7 @@ debug:
 	@$(MAKE) --no-print-directory COMMON="-g -O0 -Wextra" -C $(BUILD) -f $(TOPDIR)/Makefile
 
 clean:
-	@rm -rf $(BUILD) $(TARGET)
+	@rm -rf $(LIB) $(BUILD)
 
 re: clean all
 
